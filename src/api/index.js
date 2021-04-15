@@ -4,9 +4,6 @@ const httpClient = axios.create({
   baseURL: 'http://localhost:3000/api/todo',
 });
 
-export const getTask = id => {
-  return httpClient.get(`/${id}`);
-};
 
 export const getTasks = () => {
   return httpClient.get(``);

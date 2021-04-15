@@ -45,20 +45,6 @@ export const updateTaskError = error => ({
   error,
 });
 
-export const getTaskRequest = id => ({
-  type: ACTION_TYPES.GET_TASKS_REQUEST,
-  id,
-});
-
-export const getTaskSuccess = ({ task }) => ({
-  type: ACTION_TYPES.GET_TASKS_SUCCESS,
-  task,
-});
-
-export const getTaskError = error => ({
-  type: ACTION_TYPES.GET_TASKS_ERROR,
-  error,
-});
 
 export const getTasksRequest = () => ({
   type: ACTION_TYPES.GET_TASKS_REQUEST,
