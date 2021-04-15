@@ -5,9 +5,9 @@ export const createTaskRequest = values => ({
   values,
 });
 
-export const createTaskSuccess = values => ({
+export const createTaskSuccess = task => ({
   type: ACTION_TYPES.CREATE_TASK_SUCCESS,
-  values,
+  task,
 });
 
 export const createTaskError = error => ({
@@ -35,9 +35,9 @@ export const updateTaskRequest = ({ id, values }) => ({
   body: { id, values },
 });
 
-export const updateTaskSuccess = ({ tasks }) => ({
+export const updateTaskSuccess = task => ({
   type: ACTION_TYPES.UPDATE_TASK_SUCCESS,
-  tasks,
+  task,
 });
 
 export const updateTaskError = error => ({
@@ -45,12 +45,11 @@ export const updateTaskError = error => ({
   error,
 });
 
-
 export const getTasksRequest = () => ({
   type: ACTION_TYPES.GET_TASKS_REQUEST,
 });
 
-export const getTasksSuccess = ({ tasks }) => ({
+export const getTasksSuccess = tasks => ({
   type: ACTION_TYPES.GET_TASKS_SUCCESS,
   tasks,
 });
