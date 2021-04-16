@@ -13,12 +13,12 @@ const TaskForm = props => {
 
   return (
     <Formik
-      initialValues={{ body: '', selectedDate: minDate }}
+      initialValues={{ body: '', deadline: minDate }}
       onSubmit={onSubmit}
     >
       <Form>
         <Field name='body' />
-        <Field name='selectedDate' type='date' min={minDate} />
+        <Field name='deadline' type='date' min={minDate} />
         <button type='submit'>Create Task</button>
       </Form>
     </Formik>
