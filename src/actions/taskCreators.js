@@ -20,9 +20,9 @@ export const deleteTaskRequest = id => ({
   id,
 });
 
-export const deleteTaskSuccess = id => ({
+export const deleteTaskSuccess = task => ({
   type: ACTION_TYPES.DELETE_TASK_SUCCESS,
-  id,
+  task,
 });
 
 export const deleteTaskError = error => ({
@@ -32,7 +32,8 @@ export const deleteTaskError = error => ({
 
 export const updateTaskRequest = ({ id, values }) => ({
   type: ACTION_TYPES.UPDATE_TASK_REQUEST,
-  body: { id, values },
+  id,
+  values,
 });
 
 export const updateTaskSuccess = task => ({

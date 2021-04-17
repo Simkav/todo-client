@@ -65,6 +65,7 @@ function taskReducer (state = initialState, action) {
       const updatedTaskIndex = newTasks.findIndex(
         oldtask => oldtask.id === updatedTask.id
       );
+     
 
       const task = newTasks[updatedTaskIndex];
 
@@ -72,7 +73,7 @@ function taskReducer (state = initialState, action) {
 
       return {
         ...state,
-        isFetching: true,
+        isFetching: false,
         error: false,
         tasks: [...newTasks],
       };
@@ -88,7 +89,9 @@ function taskReducer (state = initialState, action) {
       };
     }
     case ACTION_TYPES.DELETE_TASK_SUCCESS: {
-      const { id } = action;
+      const {
+        task: { id },
+      } = action;
       const { tasks } = state;
       return {
         ...state,

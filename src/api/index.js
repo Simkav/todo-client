@@ -12,8 +12,8 @@ export const createTask = data => {
   return httpClient.post('/', data);
 };
 
-export const updateTask = ({ data, id }) => {
-  return httpClient.patch(`/${id}`, data);
+export const updateTask = ({ values, id }) => {
+  return httpClient.patch(`/${id}`, values);
 };
 
 export const deleteTask = id => {
