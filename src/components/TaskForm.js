@@ -1,21 +1,18 @@
 import { Formik, Form, Field } from 'formik';
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import * as TaskActionCreators from '../actions/taskCreators';
 
-const TaskForm = props => {
-  const { createTaskAction } = props;
+const TaskForm = () => {
+  const dispatch = useDispatch();
   const onSubmit = (values, formikBag) => {
-    createTaskAction(values);
+    dispatch(TaskActionCreators.createTaskRequest(values));
     formikBag.resetForm();
   };
 
   const minDate = new Date().toISOString().slice(0, 10);
 
   return (
-    <Formik
-      initialValues={{ body: '', deadline: minDate }}
-      onSubmit={onSubmit}
-    >
+    <Formik initialValues={{ body: '', deadline: minDate }} onSubmit={onSubmit}>
       <Form>
         <Field name='body' />
         <Field name='deadline' type='date' min={minDate} />
@@ -25,10 +22,4 @@ const TaskForm = props => {
   );
 };
 
-const mapDispatchToProps = dispatch => ({
-  createTaskAction: values => {
-    dispatch(TaskActionCreators.createTaskRequest(values));
-  },
-});
-
-export default connect(null, mapDispatchToProps)(TaskForm);
+export default TaskForm;
