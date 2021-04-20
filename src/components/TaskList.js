@@ -1,15 +1,21 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import * as TaskActionCreators from '../actions/taskCreators';
 
 const TaskList = () => {
   const { tasks, isFetching, error } = useSelector(({ task }) => task);
-
   const dispatch = useDispatch();
 
+  const {
+    getTasksRequest,
+    updateTaskRequest,
+    deleteTaskRequest,
+  } = bindActionCreators(TaskActionCreators, dispatch);
+
   useEffect(() => {
-    dispatch(TaskActionCreators.getTasksRequest());
-  }, [dispatch]);
+    getTasksRequest();
+  }, []);
   return (
     <section>
       {error && JSON.stringify(error)}
@@ -25,17 +31,15 @@ const TaskList = () => {
                 type='checkbox'
                 checked={task.isDone}
                 onChange={({ target: { checked } }) => {
-                  dispatch(
-                    TaskActionCreators.updateTaskRequest({
-                      id,
-                      values: { isDone: checked },
-                    })
-                  );
+                  updateTaskRequest({
+                    id,
+                    values: { isDone: checked },
+                  });
                 }}
               />
               <button
                 onClick={() => {
-                  dispatch(TaskActionCreators.deleteTaskRequest(id));
+                  deleteTaskRequest(id);
                 }}
               >
                 X

@@ -1,11 +1,16 @@
 import { Formik, Form, Field } from 'formik';
 import { connect, useDispatch } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import * as TaskActionCreators from '../actions/taskCreators';
 
 const TaskForm = () => {
   const dispatch = useDispatch();
+  const { createTaskRequest } = bindActionCreators(
+    TaskActionCreators,
+    dispatch
+  );
   const onSubmit = (values, formikBag) => {
-    dispatch(TaskActionCreators.createTaskRequest(values));
+    createTaskRequest(values);
     formikBag.resetForm();
   };
 
