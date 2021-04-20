@@ -2,14 +2,6 @@ import { put } from 'redux-saga/effects';
 import * as API from '../api';
 import * as TaskActionCreators from '../actions/taskCreators';
 //TODO ERROR HANDLING
-const parseError = error => {
-  const {
-    response: {
-      data: { error: errMessage },
-    },
-  } = error;
-  return errMessage;
-};
 
 export function * createTaskSaga (action) {
   try {
@@ -18,8 +10,8 @@ export function * createTaskSaga (action) {
       data: { data },
     } = yield API.createTask(values);
     yield put(TaskActionCreators.createTaskSuccess(data));
-  } catch (error) {
-    yield put(TaskActionCreators.createTaskError(parseError(error)));
+  } catch ({message}) {
+    yield put(TaskActionCreators.createTaskError(message));
   }
 }
 export function * getTasksSaga () {
@@ -28,8 +20,8 @@ export function * getTasksSaga () {
       data: { data },
     } = yield API.getTasks();
     yield put(TaskActionCreators.getTasksSuccess(data));
-  } catch (error) {
-    yield put(TaskActionCreators.getTasksError(parseError(error)));
+  } catch ({message}) {
+    yield put(TaskActionCreators.getTasksError(message));
   }
 }
 export function * updateTaskSaga (action) {
@@ -39,8 +31,8 @@ export function * updateTaskSaga (action) {
       data: { data },
     } = yield API.updateTask({ id, values });
     yield put(TaskActionCreators.updateTaskSuccess(data));
-  } catch (error) {
-    yield put(TaskActionCreators.updateTaskError(parseError(error)));
+  } catch ({message}) {
+    yield put(TaskActionCreators.updateTaskError(message));
   }
 }
 export function * deleteTaskSaga (action) {
@@ -50,7 +42,7 @@ export function * deleteTaskSaga (action) {
       data: { data },
     } = yield API.deleteTask(id);
     yield put(TaskActionCreators.deleteTaskSuccess(data));
-  } catch (error) {
-    yield put(TaskActionCreators.deleteTaskError(parseError(error)));
+  } catch ({message}) {
+    yield put(TaskActionCreators.deleteTaskError(message));
   }
 }
