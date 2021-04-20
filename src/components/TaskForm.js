@@ -1,5 +1,5 @@
 import { Formik, Form, Field } from 'formik';
-import { connect, useDispatch } from 'react-redux';
+import {  useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as TaskActionCreators from '../actions/taskCreators';
 
